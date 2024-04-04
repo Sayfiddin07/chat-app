@@ -2,7 +2,7 @@
     <div
         :class="['border', 'message', 'flex justify-center','items-center','absolute','h-full',
         message.position ==='right' ? 'right-message': 'left-message']">
-        <p>{{ message.message }}</p>
+        <p class="message-text">{{ message.message }}</p>
     </div>
 </template>
 
@@ -14,9 +14,10 @@ defineProps({message: Object})
 
 <style scoped>
 .message {
-    border-radius: 10px;
-    padding: 0 10px;
     max-width: 50%;
+    border-radius: 10px;
+    margin: 0 auto;
+    padding: 0 10px;
 }
 
 .left-message {
@@ -30,4 +31,10 @@ defineProps({message: Object})
     background-color: #0CB1C1;
     color: #ffffff;
 }
+
+.message-text {
+    word-wrap: break-word;
+}
+
+
 </style>

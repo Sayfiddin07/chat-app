@@ -23,19 +23,23 @@ import PrimaryButton from "@/Components/Utils/PrimaryButton.vue";
 import TextInput from "@/Components/Utils/TextInput.vue";
 import {ref} from "vue";
 import {useStore} from "vuex";
+import io from 'socket.io-client';
 
 const store = useStore()
-
+const socket = io('http://localhost:4200')
 const message = ref("");
-const sendMessage = ()=>{
-    if(message.value !==""){
-        const newMessage = {
+const sendMessage = () => {
+    if (message.value !== "") {
+        const new_message = {
             id: Date.now(),
             message: message.value,
             position: 'right'
         }
-        store.commit('addMessage', newMessage)
-        message.value = ""
+        store.commit('addMessage', new_message)
+        message.value = "";
+
+        socket.emit('message_get',new_message)
+
     }
 
 }
